@@ -1,0 +1,37 @@
+Quiz Game -> Feito na Unity 2022.3.13f1
+
+*Descrição: Jogo de Perguntas com 4 alternativas e apenas uma é correta
+
+*Plataformas -> PC e Celular
+
+
+
+*Desenvolvimento: Feito com 5 códigos, cada um com sua responsabilidade no projeto
+
+1- Level_Manager -> Responsavel pela troca de levels no jogo, nesse caso ele recarrega essa fase quando clicar no botão "Jogar Novamente"
+
+2- Question_Model -> Um Scriptable Object, que contem o numero da pergunta, conteudo da pergunta, resposta correta e textos para cada alternativa.Assim podemos gerar varias perguntas diferentes, seguindo esse modelo/protótipo. 
+
+3- Quiz_Manager -> Responsavel por ter a lista de perguntas (scriptables) do quiz, junto com o index que controlará qual pergunta será carregada no quiz. Também verifica se a pergunta está correta ou não  
+
+4- Screens_Manager -> Código responsável por controlar o fluxo de telas, Faz a tela de perguntas aparecer, faz a tela de acerto/erro aparecer e faz a tela de encerramento do jogo aparecer.
+
+5- Hud_Manager -> Um Singleton, responsável por guardar todos os Textos que serão atualizados no jogo, podendo ser acessado como uma instancia por todos os outros códigos.
+
+-----------------------------------------------------------------------------------------------
+
+*Design Patterns usadas:
+
+1- Singleton -> Geramos uma instancia que contém todos os textos, assim não gera dependência externa nos códigos.
+
+2- Single Responsability (Do SOLID principles) -> Cada código tem apenas uma responsabilidade no projeto
+
+3- Object Pooling: Os objetos do jogo não são criados, muito menos destruidos, apenas ativados e desativados, fazendo assim não lotar o garbage collector e prejudicar o desempenho do jogo.
+
+
+------------------------------------------------------------------------------------------------
+
+** Detalhes Extra: As perguntas (Scriptable Object) possuem um Enum, tornando mais facil ainda de montar as perguntas no Inspector, escolhendo qual alternativa é a correta.
+
+*** Para verificar a resposta correta, cada botão gera uma string quando clicado, então o quiz_manager acessa o scriptable da pergunta atual, pega o valor de seu enum selecionado e converte para string. Após isso ele compara as strings, para assim poder checar se acertou ou errou a pergunta. 
+
